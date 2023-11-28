@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Small cli to create a manage a todo list",
   "main": "index.js",
+  "bin": {
+    "todo": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/sharkace/todo-cli/issues"
   },
-  "homepage": "https://github.com/sharkace/todo-cli#readme"
+  "homepage": "https://github.com/sharkace/todo-cli#readme",
+  "dependencies": {
+    "commander": "^11.1.0"
+  }
 }
