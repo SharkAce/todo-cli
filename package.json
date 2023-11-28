@@ -1,0 +1,19 @@
+{
+  "name": "todo-cli",
+  "version": "1.0.0",
+  "description": "Small cli to create a manage a todo list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sharkace/todo-cli.git"
+  },
+  "author": "SharkAce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharkace/todo-cli/issues"
+  },
+  "homepage": "https://github.com/sharkace/todo-cli#readme"
+}
