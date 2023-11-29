@@ -16,6 +16,12 @@ function getFile(env){
   }
 }
 
+function validEntry(entryNum, env){
+  const isValid = parseInt(entryNum) && entryNum < getFile(env).strSeg.length;
+  if (!isValid) console.error(`${entryNum} is not a valid entry`);
+  return isValid;
+}
+
 
 module.exports = {
 
@@ -44,20 +50,26 @@ module.exports = {
   }),
 
   check: ((int, options, env) => {
+    if (!validEntry(int, env)) return;
+    int --;
+
     let todoFile = getFile(env);
-    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].split('');
-    todoFile.strSeg[int-1][1] = options.symbol;
-    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].join('');
+    todoFile.strSeg[int] = todoFile.strSeg[int].split('');
+    todoFile.strSeg[int][1] = options.symbol;
+    todoFile.strSeg[int] = todoFile.strSeg[int].join('');
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
 
   }),
 
   uncheck: ((int, options, env) => {
+    if (!validEntry(int, env)) return;
+    int --;
+
     let todoFile = getFile(env);
-    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].split('');
-    todoFile.strSeg[int-1][1] = ' ';
-    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].join('');
+    todoFile.strSeg[int] = todoFile.strSeg[int].split('');
+    todoFile.strSeg[int][1] = ' ';
+    todoFile.strSeg[int] = todoFile.strSeg[int].join('');
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
 
