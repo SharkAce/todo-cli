@@ -17,6 +17,7 @@ cli.command("read", {isDefault: true})
 cli.command("check")
   .description("Check a specified entry")
   .argument("<int>", "Entry to check")
+  .option("-s --symbol <str>", "Checkmark symbol", "x")
   .action(commands.check);
 
 cli.command("uncheck")

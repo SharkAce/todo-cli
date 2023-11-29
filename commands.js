@@ -46,7 +46,7 @@ module.exports = {
   check: ((int, options, env) => {
     let todoFile = getFile(env);
     todoFile.strSeg[int-1] = todoFile.strSeg[int-1].split('');
-    todoFile.strSeg[int-1][1] = 'x';
+    todoFile.strSeg[int-1][1] = options.symbol;
     todoFile.strSeg[int-1] = todoFile.strSeg[int-1].join('');
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
@@ -55,9 +55,9 @@ module.exports = {
 
   uncheck: ((int, options, env) => {
     let todoFile = getFile(env);
-    todoFile.strSeg[int-1] = todoFile.strSeg[str].split('');
+    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].split('');
     todoFile.strSeg[int-1][1] = ' ';
-    todoFile.strSeg[int-1] = todoFile.strSeg[str].join('');
+    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].join('');
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
 
