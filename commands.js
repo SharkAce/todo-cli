@@ -24,7 +24,7 @@ module.exports = {
     const lineAmnt = todoFile.strSeg.length-1;
     for (let i=0; i<lineAmnt; i++){
       let offset = lineAmnt.toString().length - (i+1).toString().length;
-      console.log(`${i+1} ${Array(offset+1).join(' ')}${todoFile.strSeg[i]}`);
+      console.log(`(${i+1}) ${Array(offset+1).join(' ')}${todoFile.strSeg[i]}`);
     }
 
   }),
