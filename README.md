@@ -2,9 +2,11 @@ Simple cli application to create and manage todo lists
 
 ### Instalation
 ```
-git clone https://github.com/sharkace/todo-cli.git
-cd todo-cli
-npm install -g
+$ git clone https://github.com/sharkace/todo-cli.git
+$ cd todo-cli
+$ npm i
+// To create a link in /usr/bin:
+# npm i -g
 ```
 
 ### Usage
