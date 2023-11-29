@@ -33,6 +33,15 @@ module.exports = {
     
   }),
 
+  del: ((str, options, env) => {
+    let todoFile = getFile(env);
+    console.log(options)
+    todoFile.strSeg.splice(str,options.amount);
+    if (options.all) todoFile.strSeg = [];
+
+    fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'))
+  }),
+
   check: ((str, options, env) => {
     let todoFile = getFile(env);
     todoFile.strSeg[str] = todoFile.strSeg[str].split('');

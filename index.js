@@ -33,4 +33,11 @@ cli.command("add")
   .argument("<string>", "Entry text")
   .action(commands.add);
 
+cli.command("del")
+  .description("Remove entries")
+  .argument("[int]", "Entry to delete", 0)
+  .option("-n --amount <int>", "Number of entries to delete", 1)
+  .option("-a --all", "Delete all entries")
+  .action(commands.del);
+
 cli.parse(process.argv);
