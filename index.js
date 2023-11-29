@@ -3,10 +3,7 @@
 const { Command } = require('commander');
 const cli = new Command();
 
-const read = require('./commands/read.js');
-const check = require('./commands/check.js');
-const uncheck = require('./commands/uncheck.js');
-const add = require('./commands/add.js');
+const commands = require('./commands.js');
 
 if (process.argv.length === 2) {
   process.argv.push('read')
@@ -14,24 +11,26 @@ if (process.argv.length === 2) {
 
 cli.description("Create and maintain a todo list");
 cli.name("todo");
+cli.option("-f, --file <string>", "Specify a todo file", "~/.todo");
+cli.option("-c, --current-dir", "Use the current directory") 
 
 cli.command("read")
-  .description("Print content of ~/.todo")
-  .action(read);
+  .description("Print content of todo file")
+  .action(commands.read);
 
 cli.command("check")
   .description("Check a specified entry")
-  .argument("<string>", "Entry to check")
-  .action(check);
+  .argument("<int>", "Entry to check")
+  .action(commands.check);
 
 cli.command("uncheck")
   .description("Uncheck a specified entry")
-  .argument("<string>", "Entry to uncheck")
-  .action(uncheck);
+  .argument("<int>", "Entry to uncheck")
+  .action(commands.uncheck);
 
 cli.command("add")
   .description("Create a new entry")
   .argument("<string>", "Entry text")
-  .action(add);
+  .action(commands.add);
 
 cli.parse(process.argv);
