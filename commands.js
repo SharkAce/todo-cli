@@ -6,7 +6,7 @@ function getFile(env){
   const fileName = env.parent._optionValues.currentDir ?
      ".todo": env.parent._optionValues.file.replace('~',homeDir);
   fs.ensureFileSync(fileName);
-  const fileStr = fs.readFileSync(fileName).toString()
+  const fileStr = fs.readFileSync(fileName).toString();
   const fileStrSeg = fs.readFileSync(fileName).toString().split("\n");
   
   return {
@@ -22,7 +22,7 @@ module.exports = {
    read: ((options, env) => {
     let todoFile = getFile(env);
     for (let i=0; i<todoFile.strSeg.length-1; i++){
-      console.log(`${i} ${todoFile.strSeg[i]}`)
+      console.log(`${i} ${todoFile.strSeg[i]}`);
     }
 
   }),
@@ -35,11 +35,10 @@ module.exports = {
 
   del: ((str, options, env) => {
     let todoFile = getFile(env);
-    console.log(options)
     todoFile.strSeg.splice(str,options.amount);
     if (options.all) todoFile.strSeg = [];
 
-    fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'))
+    fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
   }),
 
   check: ((str, options, env) => {
