@@ -5,16 +5,12 @@ const cli = new Command();
 
 const commands = require('./commands.js');
 
-if (process.argv.length === 2) {
-  process.argv.push('read');
-}
-
 cli.description("Create and maintain a todo list");
 cli.name("todo");
 cli.option("-f, --file <string>", "Specify a todo file", "~/.todo");
 cli.option("-c, --current-dir", "Use the current directory");
 
-cli.command("read")
+cli.command("read", {isDefault: true})
   .description("Print content of todo file")
   .action(commands.read);
 
