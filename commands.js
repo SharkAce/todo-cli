@@ -23,8 +23,8 @@ module.exports = {
     let todoFile = getFile(env);
     const lineAmnt = todoFile.strSeg.length-1;
     for (let i=0; i<lineAmnt; i++){
-      let offset = lineAmnt.toString().length - i.toString().length;
-      console.log(`${i} ${Array(offset+1).join(' ')}${todoFile.strSeg[i]}`);
+      let offset = lineAmnt.toString().length - (i+1).toString().length;
+      console.log(`${i+1} ${Array(offset+1).join(' ')}${todoFile.strSeg[i]}`);
     }
 
   }),
@@ -35,29 +35,29 @@ module.exports = {
     
   }),
 
-  del: ((str, options, env) => {
+  del: ((int, options, env) => {
     let todoFile = getFile(env);
-    todoFile.strSeg.splice(str,options.amount);
+    todoFile.strSeg.splice(int-1,options.amount);
     if (options.all) todoFile.strSeg = [];
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
   }),
 
-  check: ((str, options, env) => {
+  check: ((int, options, env) => {
     let todoFile = getFile(env);
-    todoFile.strSeg[str] = todoFile.strSeg[str].split('');
-    todoFile.strSeg[str][1] = 'x';
-    todoFile.strSeg[str] = todoFile.strSeg[str].join('');
+    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].split('');
+    todoFile.strSeg[int-1][1] = 'x';
+    todoFile.strSeg[int-1] = todoFile.strSeg[int-1].join('');
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
 
   }),
 
-  uncheck: ((str, options, env) => {
+  uncheck: ((int, options, env) => {
     let todoFile = getFile(env);
-    todoFile.strSeg[str] = todoFile.strSeg[str].split('');
-    todoFile.strSeg[str][1] = ' ';
-    todoFile.strSeg[str] = todoFile.strSeg[str].join('');
+    todoFile.strSeg[int-1] = todoFile.strSeg[str].split('');
+    todoFile.strSeg[int-1][1] = ' ';
+    todoFile.strSeg[int-1] = todoFile.strSeg[str].join('');
 
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
 
