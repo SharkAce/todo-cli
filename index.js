@@ -35,6 +35,7 @@ cli.command("del")
   .argument("[int]", "Entry to delete", 0)
   .option("-n --amount <int>", "Number of entries to delete", 1)
   .option("-a --all", "Delete all entries")
+  .usage("[int] [options]")
   .action(commands.del);
 
 cli.parse(process.argv);
