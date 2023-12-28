@@ -16,18 +16,18 @@ cli.command("read", {isDefault: true})
 
 cli.command("check")
   .description("Check a specified entry")
-  .argument("<int>", "Entry to check")
+  .argument("<int...>", "Entry to check")
   .option("-s --symbol <str>", "Checkmark symbol", "x")
   .action(commands.check);
 
 cli.command("uncheck")
   .description("Uncheck a specified entry")
-  .argument("<int>", "Entry to uncheck")
+  .argument("<int...>", "Entry to uncheck")
   .action(commands.uncheck);
 
 cli.command("add")
   .description("Create a new entry")
-  .argument("<string>", "Entry text")
+  .argument("<string...>", "Entry text")
   .action(commands.add);
 
 cli.command("del")

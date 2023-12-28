@@ -35,9 +35,11 @@ module.exports = {
 
   }),
 
-  add: ((str, options, env) => {
+  add: ((arr, options, env) => {
     let todoFile = getFile(env);
-    fs.appendFileSync(todoFile.name, `[ ] - ${str}\n`);
+    arr.forEach((str) => {
+      fs.appendFileSync(todoFile.name, `[ ] - ${str}\n`);
+    });
     
   }),
 
@@ -49,29 +51,36 @@ module.exports = {
     fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
   }),
 
-  check: ((int, options, env) => {
-    if (!validEntry(int, env)) return;
-    int --;
+  check: ((arr, options, env) => {
+		let todoFile = getFile(env);
+		arr.forEach((int) => {
 
-    let todoFile = getFile(env);
-    todoFile.strSeg[int] = todoFile.strSeg[int].split('');
-    todoFile.strSeg[int][1] = options.symbol;
-    todoFile.strSeg[int] = todoFile.strSeg[int].join('');
+			if (validEntry(int, env)){
+				int --;
 
-    fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
+				todoFile.strSeg[int] = todoFile.strSeg[int].split('');
+				todoFile.strSeg[int][1] = options.symbol;
+				todoFile.strSeg[int] = todoFile.strSeg[int].join('');
+
+				fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
+			}
+		});
 
   }),
 
-  uncheck: ((int, options, env) => {
-    if (!validEntry(int, env)) return;
-    int --;
+  uncheck: ((arr, options, env) => {
+		let todoFile = getFile(env);
+		arr.forEach((int) => {
 
-    let todoFile = getFile(env);
-    todoFile.strSeg[int] = todoFile.strSeg[int].split('');
-    todoFile.strSeg[int][1] = ' ';
-    todoFile.strSeg[int] = todoFile.strSeg[int].join('');
+			if (validEntry(int, env)){
+				int --;
 
-    fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
+				todoFile.strSeg[int] = todoFile.strSeg[int].split('');
+				todoFile.strSeg[int][1] = ' ';
+				todoFile.strSeg[int] = todoFile.strSeg[int].join('');
 
-  })
-};
+				fs.writeFileSync(todoFile.name, todoFile.strSeg.join('\n'));
+			}
+		})
+	})
+}
