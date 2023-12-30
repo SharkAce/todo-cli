@@ -1,11 +1,16 @@
-const fs = require('fs-extra');
-const os = require('os');
+const fs = require('node:fs');
+const os = require('node:os');
 
 function getFile(env){
   const homeDir = os.homedir();
   const fileName = env.parent._optionValues.currentDir ?
      ".todo": env.parent._optionValues.file.replace('~',homeDir);
-  fs.ensureFileSync(fileName);
+  
+	if (!fs.existsSync(fileName)) {
+		fs.writeFileSync(fileName, '', 'utf-8');
+	}
+
+
   const fileStr = fs.readFileSync(fileName).toString();
   const fileStrSeg = fs.readFileSync(fileName).toString().split("\n");
   
