@@ -1,6 +1,9 @@
+# todo-cli
+
+## Descrition
 Simple cli application to create and manage todo lists
 
-### Instalation
+## Instalation
 ```
 $ git clone https://github.com/sharkace/todo-cli.git
 $ cd todo-cli
@@ -9,7 +12,7 @@ $ npm i
 # npm i -g
 ```
 
-### Usage
+## Usage
 ```
 todo [options] [command]
 
